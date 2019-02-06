@@ -11,14 +11,24 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Auth::routes();
+
+Route::group(['namespace' => 'admin'], function () {
+    Route::get('/cjad', 'dashboard_admin@index')->name('dashboard')->middleware('auth');
+    Route::get('/cjad/home', 'dashboard_admin@index')->name('home')->middleware('auth');
+    Route::get('/logout', 'dashboard_admin@logout_admin')->name('logout');
+
+
+    Route::group(['prefix' => 'job','middleware' => 'auth'], function () {
+    	Route::get('/list', 'job@job_list')->name('job-list');
+    	Route::get('/add', 'job@job_add')->name('job-add');
+    });
+
+  
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
