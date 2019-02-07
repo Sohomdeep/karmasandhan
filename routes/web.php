@@ -26,6 +26,7 @@ Route::group(['namespace' => 'admin'], function () {
     Route::group(['prefix' => 'job','middleware' => 'auth'], function () {
     	Route::get('/list', 'job@job_list')->name('job-list');
     	Route::get('/add', 'job@job_add')->name('job-add');
+    	Route::get('/do-add', 'job@do_job_add')->name('do-add-job');
     });
 
   
