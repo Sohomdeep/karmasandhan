@@ -47,9 +47,24 @@ $(function () {
                                 <label>Company Name <span class="requireStar">*</span></label>
                                 <input type="text" name="company_name" id="company_name" class="form-control input-sm" maxlength="75">
                             </div>
+
+                            <div class="form-group">
+                                <label>Locations<span class="requireStar">*</span></label>
+                                <select name="location[]" id="location" class="form-control input-sm" multiple="">
+                                    @if(!empty($locations) && count($locations)>0)
+                                        <option value="">Select Location</option>
+                                        @foreach($locations as $zn)
+                                            <option value="{{$zn->id}}">{{$zn->location_name}}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">No Location Avilable</option>
+                                    @endif
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label>Skills<span class="requireStar">*</span></label>
-                                <select name="distributor" id="distributor" class="form-control input-sm">
+                                <select name="skill[]" id="skill" class="form-control input-sm" multiple="">
                                     @if(!empty($skills) && count($skills)>0)
                                         <option value="">Select Skill</option>
                                         @foreach($skills as $zn)
@@ -63,7 +78,7 @@ $(function () {
 
                             <div class="form-group">
                                 <label>Sectors<span class="requireStar">*</span></label>
-                                <select name="distributor" id="distributor" class="form-control input-sm">
+                                <select name="sector[]" id="sector" class="form-control input-sm" multiple="">
                                     @if(!empty($sectors) && count($sectors)>0)
                                         <option value="">Select Sectors</option>
                                         @foreach($sectors as $zn)
@@ -77,7 +92,7 @@ $(function () {
 
                             <div class="form-group">
                                 <label>Qualifications<span class="requireStar">*</span></label>
-                                <select name="distributor" id="distributor" class="form-control input-sm">
+                                <select name="qualification[]" id="qualification" class="form-control input-sm" multiple="">
                                     @if(!empty($qualifications) && count($qualifications)>0)
                                         <option value="">Select Qualifications</option>
                                         @foreach($qualifications as $zn)
@@ -95,7 +110,7 @@ $(function () {
                             </div>
                             <div class="form-group">
                                 <label>Down Body <span class="requireStar">*</span></label>
-                                <input type="text" name="down_body" id="editor2" class="form-control input-sm">
+                                <textarea  name="down_body" id="editor2" class="form-control input-sm"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Experiance (in years) <span class="requireStar">*</span></label>

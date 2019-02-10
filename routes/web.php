@@ -26,12 +26,14 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'],
     Route::get('/home', 'dashboard_admin@index')->name('admin-dashboard');
     Route::get('/logout', 'dashboard_admin@logout_admin')->name('logout');
 
+    //job
     Route::group(['prefix' => 'job','middleware' => 'auth'], function () {
     	Route::get('/list', 'job@job_list')->name('job-list');
     	Route::get('/add', 'job@job_add')->name('job-add');
-    	Route::get('/do-add', 'job@do_job_add')->name('do-add-job');
+    	Route::post('/do-add', 'job@do_job_add')->name('do-add-job');
     });
 
+    //master skill
     Route::group(['prefix' => 'skill','middleware' => 'auth'], function () {
     	Route::get('/list', 'skill@skill_list')->name('skill-list');
 		Route::get('/add', 'skill@add_skill')->name('add-skill');
@@ -42,6 +44,7 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'],
     	Route::get('/status-update', 'skill@update_status')->name('skill-status-update');
     });
 
+    //master qualification
     Route::group(['prefix' => 'qualification','middleware' => 'auth'], function () {
     	Route::get('/list', 'qualification@qualification_list')->name('qualification-list');
 		Route::get('/add', 'qualification@add_qualification')->name('add-qualification');
@@ -52,6 +55,7 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'],
     	Route::get('/status-update', 'qualification@update_status')->name('qualification-status-update');
     });
 
+    //master sector
     Route::group(['prefix' => 'sector','middleware' => 'auth'], function () {
     	Route::get('/list', 'sector@sector_list')->name('sector-list');
 		Route::get('/add', 'sector@add_sector')->name('add-sector');
@@ -62,6 +66,7 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'],
     	Route::get('/status-update', 'sector@update_status')->name('sector-status-update');
     });
 
+    //master location
     Route::group(['prefix' => 'location','middleware' => 'auth'], function () {
     	Route::get('/list', 'location@location_list')->name('location-list');
 		Route::get('/add', 'location@add_location')->name('add-location');
@@ -72,5 +77,3 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'],
     	Route::get('/status-update', 'location@update_status')->name('location-status-update');
     });
 });
-
-//Route::get('/home', 'HomeController@index')->name('home');
