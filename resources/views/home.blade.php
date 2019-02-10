@@ -1,23 +1,22 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Job</title>
+</head>
+<body>
+    <center>
+        <h1 style="color: blue;">Welcome to Careers Jobs</h1>
+        <img src="{{asset('public/admin-assets/img/pro.png')}}">
+        <marquee behavior=scroll direction="right" scrollamount="10">
+            <h2 style="color: red">
+                Site Under Construction.
+            </h2>
+        </marquee>
+        <marquee behavior=scroll direction="left" scrollamount="10">
+            <h2 style="color: #0099cc">
+                For more info, Contact to admin.
+            </h2>
+        </marquee>
+    </center>
+</body>
+</html>

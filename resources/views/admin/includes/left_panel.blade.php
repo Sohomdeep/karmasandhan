@@ -22,8 +22,8 @@
 
         <div class="main-menu">
             <ul>
-                <li @if((Route::currentRouteName() == "dashboard")) class="active open" @endif>
-                    <a href="{{route('dashboard')}}">
+                <li @if((Route::currentRouteName() == "admin-dashboard")) class="active open" @endif>
+                    <a href="{{route('admin-dashboard')}}">
                         <span class="menu-icon">
                             <i class="fa fa-desktop fa-lg"></i>
                         </span>

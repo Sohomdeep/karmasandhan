@@ -17,11 +17,14 @@
 
 Auth::routes();
 
-Route::group(['prefix' => 'cjad','namespace' => 'admin'], function () {
-    Route::get('/home', 'dashboard_admin@index')->name('dashboard')->middleware('auth');
-    Route::get('/cjad/home', 'dashboard_admin@index')->name('home')->middleware('auth');
-    Route::get('/logout', 'dashboard_admin@logout_admin')->name('logout');
+//guest
+Route::get('/', 'HomeController@index')->name('home');
 
+//admin routes
+Route::get('/cjad/', 'admin\dashboard_admin@index')->name('admin-index')->middleware('auth');
+Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'], function () {
+    Route::get('/home', 'dashboard_admin@index')->name('admin-dashboard');
+    Route::get('/logout', 'dashboard_admin@logout_admin')->name('logout');
 
     Route::group(['prefix' => 'job','middleware' => 'auth'], function () {
     	Route::get('/list', 'job@job_list')->name('job-list');
@@ -68,7 +71,6 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin'], function () {
 		Route::get('/delete/{location_id?}', 'location@delete_location')->name('delete-location');
     	Route::get('/status-update', 'location@update_status')->name('location-status-update');
     });
-      
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');
