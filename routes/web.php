@@ -17,8 +17,8 @@
 
 Auth::routes();
 
-Route::group(['namespace' => 'admin'], function () {
-    Route::get('/cjad', 'dashboard_admin@index')->name('dashboard')->middleware('auth');
+Route::group(['prefix' => 'cjad','namespace' => 'admin'], function () {
+    Route::get('/home', 'dashboard_admin@index')->name('dashboard')->middleware('auth');
     Route::get('/cjad/home', 'dashboard_admin@index')->name('home')->middleware('auth');
     Route::get('/logout', 'dashboard_admin@logout_admin')->name('logout');
 
@@ -29,7 +29,46 @@ Route::group(['namespace' => 'admin'], function () {
     	Route::get('/do-add', 'job@do_job_add')->name('do-add-job');
     });
 
-  
+    Route::group(['prefix' => 'skill','middleware' => 'auth'], function () {
+    	Route::get('/list', 'skill@skill_list')->name('skill-list');
+		Route::get('/add', 'skill@add_skill')->name('add-skill');
+		Route::post('/do-add', 'skill@do_add_skill')->name('do-add-skill');
+		Route::get('/edit/{skill_id?}', 'skill@edit_skill')->name('edit-skill');
+		Route::post('/do-edit', 'skill@do_edit_skill')->name('do-edit-skill');		
+		Route::get('/delete/{skill_id?}', 'skill@delete_skill')->name('delete-skill');
+    	Route::get('/status-update', 'skill@update_status')->name('skill-status-update');
+    });
+
+    Route::group(['prefix' => 'qualification','middleware' => 'auth'], function () {
+    	Route::get('/list', 'qualification@qualification_list')->name('qualification-list');
+		Route::get('/add', 'qualification@add_qualification')->name('add-qualification');
+		Route::post('/do-add', 'qualification@do_add_qualification')->name('do-add-qualification');
+		Route::get('/edit/{qualification_id?}', 'qualification@edit_qualification')->name('edit-qualification');
+		Route::post('/do-edit', 'qualification@do_edit_qualification')->name('do-edit-qualification');		
+		Route::get('/delete/{qualification_id?}', 'qualification@delete_qualification')->name('delete-qualification');
+    	Route::get('/status-update', 'qualification@update_status')->name('qualification-status-update');
+    });
+
+    Route::group(['prefix' => 'sector','middleware' => 'auth'], function () {
+    	Route::get('/list', 'sector@sector_list')->name('sector-list');
+		Route::get('/add', 'sector@add_sector')->name('add-sector');
+		Route::post('/do-add', 'sector@do_add_sector')->name('do-add-sector');
+		Route::get('/edit/{sector_id?}', 'sector@edit_sector')->name('edit-sector');
+		Route::post('/do-edit', 'sector@do_edit_sector')->name('do-edit-sector');		
+		Route::get('/delete/{sector_id?}', 'sector@delete_sector')->name('delete-sector');
+    	Route::get('/status-update', 'sector@update_status')->name('sector-status-update');
+    });
+
+    Route::group(['prefix' => 'location','middleware' => 'auth'], function () {
+    	Route::get('/list', 'location@location_list')->name('location-list');
+		Route::get('/add', 'location@add_location')->name('add-location');
+		Route::post('/do-add', 'location@do_add_location')->name('do-add-location');
+		Route::get('/edit/{location_id?}', 'location@edit_location')->name('edit-location');
+		Route::post('/do-edit', 'location@do_edit_location')->name('do-edit-location');		
+		Route::get('/delete/{location_id?}', 'location@delete_location')->name('delete-location');
+    	Route::get('/status-update', 'location@update_status')->name('location-status-update');
+    });
+      
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -37,7 +37,7 @@
                 <li  @if(Request::segment(2)=="job" ) active open @endif">
                     <a href="{{route('job-list')}}">
                         <span class="menu-icon">
-                            <i class="fa fa-desktop fa-lg"></i>
+                            <i class="fa fa-briefcase"></i>
                         </span>
                         <span class="text">
                             Job
@@ -46,205 +46,63 @@
                     </a>
                 </li>
 
-                {{--<li class="openable @if(Request::segment(2)=="supervisor" || Request::segment(2)=="field-auditor") active open @endif">
-                    <a href="#">
+                <li class="openable @if(Request::segment(2)=="skill" || Request::segment(2)=="qualification" || Request::segment(2)=="sector" || Request::segment(2)=="location") active open @endif">
+                    <a href="javascript:void(0)">
                         <span class="menu-icon">
-                            <i class="fa fa-file-text fa-lg"></i>
+                            <i class="fa fa-gear"></i>
                         </span>
                         <span class="text">
-                            Users
+                            Master Settings
                         </span>
                         <span class="menu-hover"></span>
                     </a>
                     <ul class="submenu">
-                        <li @if((Route::currentRouteName() == "supervisor-list" || Request::segment(2)=="supervisor")) class="active open" @endif>
-                            <a href="{{route('supervisor-list')}}">
+                        <li @if(Request::segment(2)=="skill") class="active open" @endif>
+                            <a href="{{route('skill-list')}}">
                                 <span class="menu-icon">
                                     <i class="fa fa-arrow-right"></i>
                                 </span>
                                 <span class="text">
-                                    Supervisor
+                                    Skill
                                 </span>
                                 <span class="menu-hover"></span>
                             </a>
                         </li>
-
-
-                        <li @if((Route::currentRouteName() == "field-auditor-list" || Request::segment(2)=="field-auditor")) class="active open" @endif>
-                            <a href="{{route('field-auditor-list')}}">
+                        <li @if(Request::segment(2)=="qualification") class="active open" @endif>
+                            <a href="{{route('qualification-list')}}">
                                 <span class="menu-icon">
                                     <i class="fa fa-arrow-right"></i>
                                 </span>
                                 <span class="text">
-                                    Field auditor
+                                    Qualification
+                                </span>
+                                <span class="menu-hover"></span>
+                            </a>
+                        </li>
+                        <li @if(Request::segment(2)=="sector") class="active open" @endif>
+                            <a href="{{route('sector-list')}}">
+                                <span class="menu-icon">
+                                    <i class="fa fa-arrow-right"></i>
+                                </span>
+                                <span class="text">
+                                    Sector
+                                </span>
+                                <span class="menu-hover"></span>
+                            </a>
+                        </li>
+                        <li @if(Request::segment(2)=="location") class="active open" @endif>
+                            <a href="{{route('location-list')}}">
+                                <span class="menu-icon">
+                                    <i class="fa fa-arrow-right"></i>
+                                </span>
+                                <span class="text">
+                                    Location
                                 </span>
                                 <span class="menu-hover"></span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <li class="openable @if(Request::segment(2)=="brand-variant" || Request::segment(2)=="competition-brand-variant") active open @endif">
-                    <a href="#">
-                        <span class="menu-icon">
-                            <i class="fa fa-file-text fa-lg"></i>
-                        </span>
-                        <span class="text">
-                            Brands
-                        </span>
-                        <span class="menu-hover"></span>
-                    </a>
-                    <ul class="submenu">
-                        <li @if((Request::segment(2)=="brand-variant")) class="active open" @endif>
-                            <a href="{{route('brand-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    ITC
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-                        <li @if((Request::segment(2)=="competition-brand-variant")) class="active open" @endif>
-                            <a href="{{route('competition-brand-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Competition
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-                        <!-- <li @if((Route::currentRouteName() == "variant-list" || Request::segment(2)=="variant")) class="active open" @endif>
-                            <a href="{{route('variant-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Variant
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li> -->
-                    </ul>
-                </li>
-
-                <li class="openable @if(Request::segment(2)=="zone" || Request::segment(2)=="branch" || Request::segment(2)=="city" || Request::segment(2)=="distributor" || Request::segment(2)=="outlet") active open @endif">
-                    <a href="#">
-                        <span class="menu-icon">
-                            <i class="fa fa-file-text fa-lg"></i>
-                        </span>
-                        <span class="text">
-                            Market Level
-                        </span>
-                        <span class="menu-hover"></span>
-                    </a>
-                    <ul class="submenu">
-
-                        <li @if((Route::currentRouteName() == "zone-list" || Request::segment(2)=="zone")) class="active open" @endif>
-                            <a href="{{route('zone-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Zone
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-
-                        <li @if((Route::currentRouteName() == "branch-list" || Request::segment(2)=="branch")) class="active open" @endif>
-                            <a href="{{route('branch-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Branch
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-
-                        <li @if((Route::currentRouteName() == "city-list" || Request::segment(2)=="city")) class="active open" @endif>
-                            <a href="{{route('city-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    City
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-
-                        <li @if((Route::currentRouteName() == "distributor-list" || Request::segment(2)=="distributor")) class="active open" @endif>
-                            <a href="{{route('distributor-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Distributor
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-
-                        <li @if((Route::currentRouteName() == "outlet-list" || Request::segment(2)=="outlet")) class="active open" @endif>
-                            <a href="{{route('outlet-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Outlet
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="openable @if(Request::segment(1)=="market") active open @endif">
-                    <a href="#">
-                        <span class="menu-icon">
-                            <i class="fa fa-file-text fa-lg"></i>
-                        </span>
-                        <span class="text">
-                            Brand Settings
-                        </span>
-                        <span class="menu-hover"></span>
-                    </a>
-                    <ul class="submenu">
-
-                        <li @if( Request::segment(2)=="focus-brand") class="active open" @endif>
-                            <a href="{{route('monthly_fb_variant_list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Focused Brand
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-                        <li @if( Request::segment(2)=="facing-brand") class="active open" @endif>
-                            <a href="{{route('ffb-variant-list')}}">
-                                <span class="menu-icon">
-                                    <i class="fa fa-arrow-right"></i>
-                                </span>
-                                <span class="text">
-                                    Facing Brand
-                                </span>
-                                <span class="menu-hover"></span>
-                            </a>
-                        </li>
-
-
-                        
-                    </ul>
-                </li>--}}
-
             </ul>
         </div><!-- /main-menu -->
     </div><!-- /sidebar-inner -->
