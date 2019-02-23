@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
+<script src="{{asset('public/admin-assets/selectizejs/selectize.js')}}"></script>
+<link href="{{asset('public/admin-assets/selectizejs/selectize.bootstrap3.css')}}" rel="stylesheet"/>
+<link href="{{asset('public/admin-assets/selectizejs/selectize.default.css')}}" rel="stylesheet"/>
 {{-- <script src="{{asset('public/admin-assets/js/ckediter.js')}}"></script> --}}
 {{-- <script type="text/javascript">
 $(function () {
@@ -120,6 +123,11 @@ $(function () {
                                 <label>Expired On <span class="requireStar">*</span></label>
                                 <input type="date" name="expired_on" id="expired_on" class="form-control input-sm" maxlength="2">
                             </div>
+
+                            <div class="form-group">
+                                <label>Extra Views <span class="requireStar">*</span></label>
+                                <input type="number" name="extra" id="extra" class="form-control input-sm" maxlength="10">
+                            </div>
                           
                             <div class="form-group">
                                 <label>Is Featured <span class="requireStar">*</span></label>
@@ -169,5 +177,29 @@ $(function () {
 <script type="text/javascript">
      CKEDITOR.replace( 'editor1' );
      CKEDITOR.replace( 'editor2' );
+
+     $('#location').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+
+     $('#skill').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+
+     $('#sector').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+
+     $('#qualification').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
 </script>
 @endsection

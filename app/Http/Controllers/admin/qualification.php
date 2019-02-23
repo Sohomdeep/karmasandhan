@@ -173,17 +173,17 @@ class Qualification extends BaseController {
      /* Function name : update_status
       Date : 15-01-2019
       Description : Updating status of qualification*/
-    /*function update_status(Request $request)
+    function update_status(Request $request)
     {
         $qualification_id = $request->qualification_id;
         $status = $request->status;
         $statusArray=array(
             'is_active' => $status,
-            'updated_by'=> Auth::User()->id
+            //'updated_by'=> Auth::User()->id
         );
         if($qualification_id>0){
-            $update = qualification_master::where('qualification_id',$qualification_id)->update($statusArray);
+            $update = master_qualification::where('id',$qualification_id)->update($statusArray);
             echo "1";
         }
-    }*/
+    }
 }

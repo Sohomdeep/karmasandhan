@@ -172,17 +172,17 @@ class Location extends BaseController {
      /* Function name : update_status
       Date : 15-01-2019
       Description : Updating status of location*/
-    /*function update_status(Request $request)
+    function update_status(Request $request)
     {
         $location_id = $request->location_id;
         $status = $request->status;
         $statusArray=array(
             'is_active' => $status,
-            'updated_by'=> Auth::User()->id
+            //'updated_by'=> Auth::User()->id
         );
         if($location_id>0){
-            $update = location_master::where('location_id',$location_id)->update($statusArray);
+            $update = master_location::where('id',$location_id)->update($statusArray);
             echo "1";
         }
-    }*/
+    }
 }

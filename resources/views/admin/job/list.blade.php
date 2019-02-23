@@ -100,6 +100,7 @@
                         <th style="width: 5%">Job Id</th>
                         <th style="width: 15%">Job Title</th>
                         <th style="width: 25%">Location</th>
+                        <th style="width: 25%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,13 +115,16 @@
                                 @endforeach
                             @endif
                         </td>
+                        <td>
+                            <a href="{{route('job-edit',['job_id'=>$list->id])}}" title="Edit"><button type="button" class="btn btn-round btn-xs btn-primary"><i class="fa fa-edit"></i></button></a>
+                        </td>
+
                             {{-- @if(isset($list->outlet_has_one_distributor_outlet_mapping->distributor->distributor_name)){{$list->outlet_has_one_distributor_outlet_mapping->distributor->distributor_name}}@else -- @endif --}}
                         
                             {{-- <input type="checkbox" class="changeStatusClass" data-size="mini" id="{{$list->outlet_id}}"  @if($list->is_active ==1) checked @endif  data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" value="{{$list->is_active}}"> --}}
                         
                         
-                            {{-- <a href="{{route('outlet-edit',['outlet_id'=>$list->outlet_id])}}" title="Edit"><button type="button" class="btn btn-round btn-xs btn-primary"><i class="fa fa-edit"></i></button></a>
-                            <a href="javascript:void(0)" title="Delete" onclick="return confirm_alert('{{$list->outlet_id}}');"><button type="button" class="btn btn-round btn-xs btn-danger"><i class="fa fa-trash-o"></i></button></a> --}}
+                            {{--  --}}
                         
                     </tr>
                    @endforeach

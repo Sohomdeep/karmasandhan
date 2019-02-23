@@ -173,17 +173,17 @@ class Skill extends BaseController {
      /* Function name : update_status
       Date : 15-01-2019
       Description : Updating status of skill*/
-    /*function update_status(Request $request)
+    function update_status(Request $request)
     {
         $skill_id = $request->skill_id;
         $status = $request->status;
         $statusArray=array(
             'is_active' => $status,
-            'updated_by'=> Auth::User()->id
+            //'updated_by'=> Auth::User()->id
         );
         if($skill_id>0){
-            $update = skill_master::where('skill_id',$skill_id)->update($statusArray);
+            $update = master_skill::where('id',$skill_id)->update($statusArray);
             echo "1";
         }
-    }*/
+    }
 }

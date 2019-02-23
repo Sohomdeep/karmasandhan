@@ -1,18 +1,25 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('content')
-<!--Google map api location-->
-<script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyB8jvqsSiQ8afTkrUOi1lSVP9hPtFy33qU&libraries=places'></script>
-<!-- <script src="{{asset('admin_assets/js/locationPicker/locationpicker.jquery.min.js')}}"></script>
-<script src="{{asset('admin_assets/js/locationPicker/locationpicker.jquery.min.map')}}"></script> -->
-<script src="{{asset('locationPicker/locationpicker.jquery.min.js')}}"></script>
-<script src="{{asset('locationPicker/locationpicker.jquery.min.map')}}"></script>
-<!--Google map api location end    -->
-<script type="text/javascript">
+<script src="{{asset('public/admin-assets/selectizejs/selectize.js')}}"></script>
+<link href="{{asset('public/admin-assets/selectizejs/selectize.bootstrap3.css')}}" rel="stylesheet"/>
+<link href="{{asset('public/admin-assets/selectizejs/selectize.default.css')}}" rel="stylesheet"/>
+
+
+
+
+
+
+
+
+{{-- <script src="{{asset('public/admin-assets/js/ckediter.js')}}"></script> --}}
+{{-- <script type="text/javascript">
 $(function () {
-    $('#edit-form').submit(function () {
+
+    $('#add-form').submit(function () {
+
         $('#all_error').html('');
-        if ($('#outlet_name').commonCheck('Please enter outlet name') & $('#picklocation').commonCheck('Please enter adress')) {
-            $('#edit-form_btn').prop('disabled', true);
+        if ($('#outlet_name').commonCheck('Please enter outlet name') & $('#picklocation').commonCheck('Please enter adress') & $('#distributor').commonCheck('Please select distributor')) {
+            $('#add-form_btn').prop('disabled', true);
             return true;
         }else
         {
@@ -22,137 +29,190 @@ $(function () {
         return false;
     });
 
-    //google api start
-    var baselat = $('#picklocationlat').val();
-    var baselong = $('#picklocationlong').val();
-    try {
-        baselat = parseFloat(baselat);
-        baselong = parseFloat(baselong);
-        if (isNaN(baselat)) {
-            baselat = 0;
-        }
-        if (isNaN(baselong)) {
-            baselong = 0;
-        }
-    } catch (ex) {
-        baselat = 0;
-        baselong = 0;
-    }
-
-    $('#location_map').locationpicker({
-        location: {latitude: baselat, longitude: baselong},
-        radius: 300,
-        zoom: 15,
-        scrollwheel: false,
-        inputBinding: {
-            latitudeInput: $('#picklocationlat'),
-            longitudeInput: $('#picklocationlong'),
-            locationNameInput: $('#picklocation')
-        },
-        onchanged: function (currentLocation, radius, isMarkerDropped) {
-            var addressComponents = $(this).locationpicker('map').location.addressComponents;
-            updateControls(addressComponents);
-        },
-        enableAutocomplete: true,
-        enableReverseGeocode: true
-    });
-
-    function updateControls(addressComponents)
-    {
-        $('#picklocationCity').val(addressComponents.city);
-        $("#picklocationaddress").val(addressComponents.addressLine1 + ', ' + addressComponents.city + ', ' + addressComponents.stateOrProvince + ', ' + addressComponents.postalCode);
-    }
-})
-</script>
+</script> --}}
 
 
 <div id="main-container">
     <div class="main-header clearfix">
         <div class="page-title">
-            <h4 class="no-margin">Edit Outlet</h4>
+            <h4 class="no-margin">Edit Job Details</h4>
         </div><!-- /page-title -->
     </div><!-- /main-header -->
-        @if(Session::get('error_message') != '')
-        <div class="alert alert-danger alert_msg" style="text-align: center;">
-            <div class="close closeError" data-close="alert"></div>
-            <span>{{Session::get('error_message')}}</span>
-        </div>
-        {{Session::forget('error_message')}}
-        @endIf
-        @if(Session::get('success_message') != '')
-        <div class="alert alert-success alert_msg" style="text-align: center;">
-            <div class="close closeError" data-close="alert"></div>
-            <span>
-                {{Session::get('success_message')}} </span>
-        </div>
-        {{Session::forget('success_message')}}
-        @endIf
     <div class="padding-md">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
 
-                        <form id="edit-form" action="{{route('do-edit-outlet')}}" method="POST" enctype="multipart/form-data">
+                        <form id="add-form" action="{{route('do-edit-job')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="outlet_id" value="{{$outlet_details->outlet_id}}">
+                            <input type="hidden" name="job_id" @if(isset($edit_data[0]->id))value="{{$edit_data[0]->id}}"@endif>
                             <div class="form-group">
-                                <label>Name <span class="requireStar">*</span></label>
-                                <input type="text" name="outlet_name" id="outlet_name" class="form-control input-sm" maxlength="60" value="{{$outlet_details->outlet_name}}">
+                                <label>Job Title <span class="requireStar">*</span></label>
+                                <input type="text" name="job_title" id="job_title" class="form-control input-sm" maxlength="75" @if(isset($edit_data[0]->job_title))value="{{$edit_data[0]->job_title}}"@endif>
                             </div>
+                            <div class="form-group">
+                                <label>Short Description <span class="requireStar">*</span></label>
+                                <textarea name="short_desc" id="short_desc" class="form-control input-sm" maxlength="250">@if(isset($edit_data[0]->short_desc)){{$edit_data[0]->short_desc}}@endif</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Company Name <span class="requireStar">*</span></label>
+                                <input type="text" name="company_name" id="company_name" class="form-control input-sm" maxlength="75" @if(isset($edit_data[0]->company_name))value="{{$edit_data[0]->company_name}}"@endif>
+                            </div>
+                            
+                            @php
+                            $loc_ids = [];
+                            if(isset($edit_data[0]->job_location_map) && !empty($edit_data[0]->job_location_map))
+                            {
+                                foreach ($edit_data[0]->job_location_map as $loc) 
+                                {
+                                    array_push($loc_ids, $loc->hasone_master_location['id']);
+                                }
+                            }
+                            @endphp
 
                             <div class="form-group">
-                                <label>Wholesale Distributor</label>
-                                <input type="text" readonly name="outlet_name" id="outlet_name" class="form-control input-sm" maxlength="60" value="{{$outlet_details->outlet_has_one_distributor_outlet_mapping->distributor->distributor_name}}">
-                            </div>
-
-                            <!-- <div class="form-group">
-                                <label>Wholesale Distributor<span class="requireStar">*</span></label>
-                                <select name="distributor" id="distributor" class="form-control input-sm" readonly>
-                                    @if(!empty($distributor) && count($distributor)>0)
-                                        <option value="">Select Distributor</option>
-                                        @foreach($distributor as $zn)
-                                            <option {{($zn->distributor_id==$outlet_details->outlet_has_one_distributor_outlet_mapping->distributor->distributor_id)?'selected':''}} value="{{$zn->distributor_id}}">{{$zn->distributor_name}}</option>
+                                <label>Locations<span class="requireStar">*</span></label>
+                                <select name="location[]" id="location" class="form-control input-sm" multiple="">
+                                    @if(!empty($locations) && count($locations)>0)
+                                        <option value="">Select Location</option>
+                                        @foreach($locations as $zn)
+                                            <option @if(in_array($zn->id,$loc_ids)) selected @endif value="{{$zn->id}}">{{$zn->location_name}}</option>
                                         @endforeach
                                     @else
-                                        <option value="">No Distributor Avilable</option>
+                                        <option value="">No Location Avilable</option>
                                     @endif
                                 </select>
-                            </div> -->
+                            </div>
+
+                            @php
+                            $sk_ids = [];
+                            if(isset($edit_data[0]->job_skill_map) && !empty($edit_data[0]->job_skill_map))
+                            {
+                                foreach ($edit_data[0]->job_skill_map as $sk) 
+                                {
+                                    array_push($sk_ids, $sk->hasone_master_skill['id']);
+                                }
+                            }
+                            @endphp
 
                             <div class="form-group">
-                                <label>Outlet Code </label>
-                                <input type="text" name="outlet_code" id="outlet_code" class="form-control input-sm" maxlength="60" value="{{$outlet_details->outlet_code}}" readonly>
+                                <label>Skills<span class="requireStar">*</span></label>
+                                <select name="skill[]" id="skill" class="form-control input-sm" multiple="">
+                                    @if(!empty($skills) && count($skills)>0)
+                                        <option value="">Select Skill</option>
+                                        @foreach($skills as $zn)
+                                            <option @if(in_array($zn->id,$sk_ids)) selected @endif value="{{$zn->id}}">{{$zn->skill_name}}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">No Skill Avilable</option>
+                                    @endif
+                                </select>
+                            </div>
+                               
+                            @php
+                            $sec_ids = [];
+                            if(isset($edit_data[0]->job_sector_map) && !empty($edit_data[0]->job_sector_map))
+                            {
+                                foreach ($edit_data[0]->job_sector_map as $sec) 
+                                {
+                                    array_push($sec_ids, $sec->hasone_master_sector['id']);
+                                }
+                            }
+                            @endphp
+
+                            <div class="form-group">
+                                <label>Sectors<span class="requireStar">*</span></label>
+                                <select name="sector[]" id="sector" class="form-control input-sm" multiple="">
+                                    @if(!empty($sectors) && count($sectors)>0)
+                                        <option value="">Select Sectors</option>
+                                        @foreach($sectors as $zn)
+                                            <option @if(in_array($zn->id,$sec_ids)) selected @endif value="{{$zn->id}}">{{$zn->sector_name}}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">No Sector Avilable</option>
+                                    @endif
+                                </select>
+                            </div>
+                                
+                            @php
+                            $que_ids = [];
+                            if(isset($edit_data[0]->job_qualification_map) && !empty($edit_data[0]->job_qualification_map))
+                            {
+                                foreach ($edit_data[0]->job_qualification_map as $que) 
+                                {
+                                    array_push($que_ids, $que->hasone_master_qualification['id']);
+                                }
+                            }
+                            @endphp
+
+                            <div class="form-group">
+                                <label>Qualifications<span class="requireStar">*</span></label>
+                                <select name="qualification[]" id="qualification" class="form-control input-sm" multiple="">
+                                    @if(!empty($qualifications) && count($qualifications)>0)
+                                        <option value="">Select Qualifications</option>
+                                        @foreach($qualifications as $zn)
+                                            <option @if(in_array($zn->id,$que_ids)) selected @endif value="{{$zn->id}}">{{$zn->qualification_name}}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">No Qualification Avilable</option>
+                                    @endif
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Pick a location <span class="requireStar">*</span></label>
-                                <input type="text" name="address" id="picklocation" class="form-control input-sm" placeholder="" maxlength="250" value="{{$outlet_details->address}}">
+                                <label>Up Body<span class="requireStar">*</span></label>
+                                <textarea  name="up_body" id="editor1" class="form-control input-sm">@if(isset($edit_data[0]->up_body)){{$edit_data[0]->up_body}}@endif</textarea>
                             </div>
                             <div class="form-group">
-                                <div id="location_map" style="height:300px;"></div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label>Latitude <span class="requireStar">*</span></label>
-                                <input type="text" name="lat" id="picklocationlat" class="form-control input-sm" maxlength="60" value="{{$outlet_details->latitude}}">
+                                <label>Down Body <span class="requireStar">*</span></label>
+                                <textarea  name="down_body" id="editor2" class="form-control input-sm">@if(isset($edit_data[0]->down_body)){{$edit_data[0]->down_body}}@endif</textarea>
                             </div>
                             <div class="form-group">
-                                <label>longitude <span class="requireStar">*</span></label>
-                                <input type="text" name="lng" id="picklocationlong" class="form-control input-sm" maxlength="60" value="{{$outlet_details->longitude}}">
+                                <label>Experiance (in years) <span class="requireStar">*</span></label>
+                                <input type="text" name="experiance" id="experiance" class="form-control input-sm" maxlength="2" @if(isset($edit_data[0]->experiance))value="{{$edit_data[0]->experiance}}"@endif>
+                            </div>
+                            <div class="form-group">
+                                <label>Expired On <span class="requireStar">*</span></label>
+                                <input type="date" name="expired_on" id="expired_on" class="form-control input-sm" maxlength="2">
                             </div>
 
+                            <div class="form-group">
+                                <label>Views <span class="requireStar">*</span></label>
+                                <input type="text" name="views" id="views" class="form-control input-sm" maxlength="10" readonly="" @if(isset($edit_data[0]->job_view['views']))value="{{$edit_data[0]->job_view['views']}}"@endif>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Extra Views <span class="requireStar">*</span></label>
+                                <input type="text" name="extra" id="extra" class="form-control input-sm" maxlength="10"  @if(isset($edit_data[0]->job_view['extra']))value="{{$edit_data[0]->job_view['extra']}}"@endif>
+                            </div>
+                          
+                            <div class="form-group">
+                                <label>Is Featured <span class="requireStar">*</span></label>
+                                <div>
+                                    <label class="label-radio inline">
+                                        <input {{($edit_data[0]->is_featured)==1?'checked':''}} type="radio" name="is_featured" value="1" >
+                                        <span class="custom-radio"></span>
+                                        Yes
+                                    </label>
+                                    <label class="label-radio inline">
+                                        <input {{($edit_data[0]->is_featured)==0?'checked':''}} type="radio" name="is_featured" value="0">
+                                        <span class="custom-radio"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            
                             <div class="form-group">
                                 <label>Active/Inactive <span class="requireStar">*</span></label>
                                 <div>
                                     <label class="label-radio inline">
-                                        <input type="radio" name="active_inactive" value="1" @if($outlet_details->is_active == 1) checked @endif>
+                                        <input {{($edit_data[0]->is_active)==1?'checked':''}} type="radio" name="is_active" value="1" checked>
                                         <span class="custom-radio"></span>
                                         Active
                                     </label>
                                     <label class="label-radio inline">
-                                        <input type="radio" name="active_inactive" value="0" @if($outlet_details->is_active == 0) checked @endif>
+                                        <input {{($edit_data[0]->is_active)==0?'checked':''}} type="radio" name="is_active" value="0">
                                         <span class="custom-radio"></span>
                                         Inactive
                                     </label>
@@ -161,8 +221,8 @@ $(function () {
 
                             <div class="panel-footer" style="text-align: center">
                                 <div id="all_error" style="color: red"></div>
-                                <button type="submit" id="edit-form_btn" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-danger" onclick="javascript:location.href ='{{route("outlet-list")}}'">Cancel</button>
+                                <button type="submit" id="add-form_btn" class="btn btn-success">Submit</button>
+                                <button type="button" class="btn btn-danger" onclick="javascript:location.href ='{{route("job-list")}}'">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -171,4 +231,37 @@ $(function () {
         </div>
     </div><!-- /.padding-md -->
 </div><!-- /main-container -->
+<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+     CKEDITOR.replace( 'editor1' );
+     CKEDITOR.replace( 'editor2' );
+
+    /*$( function() {
+        $( "#datepicker" ).datepicker();
+    });
+*/
+     $('#location').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+
+     $('#skill').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+
+     $('#sector').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+
+     $('#qualification').selectize({
+            plugins: ['remove_button'],
+            persist: false,
+            create: false,
+        });
+</script>
 @endsection

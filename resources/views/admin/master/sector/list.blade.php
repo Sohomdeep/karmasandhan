@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<link href="{{asset('admin-assets/bootstrap-toggle/bootstrap-toggle.min.css')}}" rel="stylesheet">
-<script src="{{asset('admin-assets/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
+<link href="{{asset('public/admin-assets/bootstrap-toggle/bootstrap-toggle.min.css')}}" rel="stylesheet">
+<script src="{{asset('public/admin-assets/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
 <script>
 
     $(function(){
@@ -108,8 +108,8 @@
                     <tr>
                         <td>{{$list->sector_name}}</td>
                         <td>
-                            @if($list->is_active==1) <b style="color: green"> Active </b> @else <b style="color: red"> Inactive </b> @endif
-                            {{--<input type="checkbox" class="changeStatusClass" data-size="mini" id="{{$list->id}}"  @if($list->is_active ==1) checked @endif  data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" value="{{$list->is_active}}">--}}
+                            {{--@if($list->is_active==1) <b style="color: green"> Active </b> @else <b style="color: red"> Inactive </b> @endif--}}
+                            <input type="checkbox" class="changeStatusClass" data-size="mini" id="{{$list->id}}"  @if($list->is_active ==1) checked @endif  data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" value="{{$list->is_active}}">
                         </td>
                         <td>
                             <a href="{{route('edit-sector',['sector_id'=>$list->id])}}" title="Edit"><button type="button" class="btn btn-round btn-xs btn-primary"><i class="fa fa-edit"></i></button></a>

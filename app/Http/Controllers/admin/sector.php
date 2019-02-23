@@ -173,17 +173,17 @@ class Sector extends BaseController {
      /* Function name : update_status
       Date : 15-01-2019
       Description : Updating status of sector*/
-    /*function update_status(Request $request)
+    function update_status(Request $request)
     {
         $sector_id = $request->sector_id;
         $status = $request->status;
         $statusArray=array(
             'is_active' => $status,
-            'updated_by'=> Auth::User()->id
+            //'updated_by'=> Auth::User()->id
         );
         if($sector_id>0){
-            $update = sector_master::where('sector_id',$sector_id)->update($statusArray);
+            $update = master_sector::where('id',$sector_id)->update($statusArray);
             echo "1";
         }
-    }*/
+    }
 }

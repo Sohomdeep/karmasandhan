@@ -31,6 +31,8 @@ Route::group(['prefix' => 'cjad','namespace' => 'admin','middleware' => 'auth'],
     	Route::get('/list', 'job@job_list')->name('job-list');
     	Route::get('/add', 'job@job_add')->name('job-add');
     	Route::post('/do-add', 'job@do_job_add')->name('do-add-job');
+        Route::get('/edit/{job_id?}', 'job@job_edit')->name('job-edit');
+        Route::post('/do-edit', 'job@do_job_edit')->name('do-edit-job');
     });
 
     //master skill
