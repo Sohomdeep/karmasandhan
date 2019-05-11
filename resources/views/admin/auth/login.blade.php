@@ -18,7 +18,7 @@
 </style>
 <div class="login-wrapper">
     <div class="text-center">
-        <img src="{{ asset('public/admin-assets/img/itc_business_logo.png') }}" style="width: 85px;">
+        <img src="{{ asset('admin-assets/img/itc_business_logo.png') }}" style="width: 85px;">
     </div>
 
     <div class="login-widget animation-delay1">

@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         //return view('home');
-        return view('job-dashboard');
-
+        //return view('job-dashboard');
+        echo "welcome 2 Careers Jobs";exit;
     }
 }

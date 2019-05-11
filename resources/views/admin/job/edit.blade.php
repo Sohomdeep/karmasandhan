@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
-<script src="{{asset('public/admin-assets/selectizejs/selectize.js')}}"></script>
-<link href="{{asset('public/admin-assets/selectizejs/selectize.bootstrap3.css')}}" rel="stylesheet"/>
-<link href="{{asset('public/admin-assets/selectizejs/selectize.default.css')}}" rel="stylesheet"/>
+<script src="{{asset('admin-assets/selectizejs/selectize.js')}}"></script>
+<link href="{{asset('admin-assets/selectizejs/selectize.bootstrap3.css')}}" rel="stylesheet"/>
+<link href="{{asset('admin-assets/selectizejs/selectize.default.css')}}" rel="stylesheet"/>
 
 
 
@@ -11,7 +11,7 @@
 
 
 
-{{-- <script src="{{asset('public/admin-assets/js/ckediter.js')}}"></script> --}}
+{{-- <script src="{{asset('admin-assets/js/ckediter.js')}}"></script> --}}
 {{-- <script type="text/javascript">
 $(function () {
 

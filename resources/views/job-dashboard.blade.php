@@ -18,17 +18,17 @@ Released   : 20130720
 <title>Careers Jobs</title>
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css' />
-<link href="{{asset('public/css/style.css')}}" rel="stylesheet"/>
-<link href="{{asset('public/css/fonts.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{asset('css/style.css')}}" rel="stylesheet"/>
+<link href="{{asset('css/fonts.css')}}" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{asset('public/js/jquery.slidertron-1.1.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.slidertron-1.1.js')}}"></script>
 </head>
 <body>
 <div id="wrapper">
 	<div id="page" class="container">
 		<div id="header" class="container">
 			<div id="logo">
-				<h1><a href="#">Careers Jobs</a></h1>
+				<h1><a href="{{url('/')}}">Careers Jobs</a></h1>
 			</div>
 			<div id="menu">
 				<ul>
@@ -44,12 +44,12 @@ Released   : 20130720
 			<div id="slider">
 				<div class="viewer">
 					<div class="reel">
-						<div class="slide"> <img src="{{asset('public/images/banner/job_banner_1.jpg')}}" alt="job_banner_1"  style="height: 300px; width: 1100px" /> </div>
-						<div class="slide"> <img src="{{asset('public/images/banner/job_banner_2.jpg')}}" alt="job_banner_2" style="height: 300px; width: 1100px" /> </div>
-						{{--<div class="slide"> <img src="{{asset('public/images/banner/job_banner_3.jpg')}}" alt="job_banner_3" style="height: 300px; width: 1100px" /> </div>--}}
-						<div class="slide"> <img src="{{asset('public/images/banner/job_banner_4.jpg')}}" alt="job_banner_4" style="height: 300px; width: 1100px" /> </div>
-						<div class="slide"> <img src="{{asset('public/images/banner/job_banner_5.jpg')}}" alt="job_banner_5" style="height: 300px; width: 1100px" /> </div>
-						<div class="slide"> <img src="{{asset('public/images/banner/job_banner_6.jpg')}}" alt="job_banner_6" style="height: 300px; width: 1100px" /> </div>
+						<div class="slide"> <img src="{{asset('images/banner/job_banner_1.jpg')}}" alt="job_banner_1"  style="height: 300px; width: 1100px" /> </div>
+						<div class="slide"> <img src="{{asset('images/banner/job_banner_2.jpg')}}" alt="job_banner_2" style="height: 300px; width: 1100px" /> </div>
+						{{--<div class="slide"> <img src="{{asset('images/banner/job_banner_3.jpg')}}" alt="job_banner_3" style="height: 300px; width: 1100px" /> </div>--}}
+						<div class="slide"> <img src="{{asset('images/banner/job_banner_4.jpg')}}" alt="job_banner_4" style="height: 300px; width: 1100px" /> </div>
+						<div class="slide"> <img src="{{asset('images/banner/job_banner_5.jpg')}}" alt="job_banner_5" style="height: 300px; width: 1100px" /> </div>
+						<div class="slide"> <img src="{{asset('images/banner/job_banner_6.jpg')}}" alt="job_banner_6" style="height: 300px; width: 1100px" /> </div>
 						
 					</div>
 				</div>
@@ -70,43 +70,17 @@ Released   : 20130720
 				{{--<span class="byline">Phasellus nec erat sit amet nibh pellentesque congue</span> </div>
 			<p>This is <strong>StylePrecision</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>--}}
 			<div id="two-column">
-				<div id="tbox1">
-					<div class="title">
-						<h2>Fusce fringilla</h2>
-					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem.</p>
-					<a href="#" class="">Read More</a> 
-				</div>
-				<div id="tbox2">
-					<div class="title">
-						<h2>Maecenas luctus</h2>
-					</div>
-					<p>Etiam non felis. Donec ut ante. In id eros. Sed dictum rutrum massa eu volutpat. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie.</p>
-					<a href="#" class="">Read More</a> 
-				</div>
-
-				<div id="tbox2">
-					<div class="title">
-						<h2>Maecenas luctus</h2>
-					</div>
-					<p>Etiam non felis. Donec ut ante. In id eros. Sed dictum rutrum massa eu volutpat. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie.</p>
-					<a href="#" class="">Read More</a> 
-				</div>
-				<div id="tbox2">
-					<div class="title">
-						<h2>Maecenas luctus</h2>
-					</div>
-					<p>Etiam non felis. Donec ut ante. In id eros. Sed dictum rutrum massa eu volutpat. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie.</p>
-					<a href="#" class="">Read More</a> 
-				</div>
-				<div id="tbox2">
-					<div class="title">
-						<h2>Maecenas luctus</h2>
-					</div>
-					<p>Etiam non felis. Donec ut ante. In id eros. Sed dictum rutrum massa eu volutpat. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie.</p>
-					<a href="#" class="">Read More</a> 
-				</div>
-
+				@if(!empty($feature_jobs))
+					@foreach($feature_jobs as $val)
+						<div id="tbox1" style="background-color: yellow">
+							<div class="title">
+								<a><h2 href="{{route('job-details',['job_id'=>$val->id])}}">{{$val->job_title}} </h2></a>
+							</div>
+							<p>{{$val->short_desc}}</p>
+							<a href="{{route('job-details',['job_id'=>$val->id])}}" class="">Read More</a> 
+						</div>
+					@endforeach
+				@endif
 			</div>
 		</div>
 		{{--<div id="sidebar">

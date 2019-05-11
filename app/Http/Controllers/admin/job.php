@@ -43,7 +43,7 @@ class Job extends BaseController
         $searchResults = job_post::
         where(function($subQuery) use ($search) {
             if($search != ''){
-               //$subQuery->where('city_name','LIKE','%'.$search.'%');
+               $subQuery->where('job_title','LIKE','%'.$search.'%');
             }
         })
         ->whereHas('job_skill_map.hasone_master_skill')

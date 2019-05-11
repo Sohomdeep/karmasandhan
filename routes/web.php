@@ -18,7 +18,8 @@
 Auth::routes();
 
 //guest
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'UserDashboard@index')->name('user-dashboard');
+Route::get('/job-details/{job_id}', 'UserDashboard@job_details')->name('job-details');
 
 //admin routes
 Route::get('/cjad/', 'admin\dashboard_admin@index')->name('admin-index')->middleware('auth');

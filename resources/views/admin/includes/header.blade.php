@@ -41,7 +41,7 @@
             <div id="top-nav" class="fixed skin-6">
                 <a href="{{url('/')}}" style="background: #F3F3F3;" class="brand">
                     <span>
-                        <img style="max-width: 54%;margin-top: -5px;" src="{{ asset('public/admin-assets/img/itc_business_logo_head.jpg') }}">
+                        <img style="max-width: 54%;margin-top: -5px;" src="{{ asset('admin-assets/img/itc_business_logo_head.jpg') }}">
                     </span>
                     <!--<span class="text-toggle">Quest</span>-->
                 </a>
@@ -114,7 +114,7 @@
               <h4 class="modal-title" id="myModalLabel" style="color: green;">Successful !</h4>
             </div>
             <div class="modal-body text-center">
-                <img src="{{asset('public/admin_assets/img/if_sign-check.png')}}" style="width: 50px;">
+                <img src="{{asset('admin_assets/img/if_sign-check.png')}}" style="width: 50px;">
                 <p class="lead">Your password changed successfully.</p>
                 <a href="javascript:void()" class="rd_more btn btn-default" data-dismiss="modal" aria-label="Close">Close</a>
             </div>

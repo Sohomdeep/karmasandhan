@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<link href="{{asset('public/admin-assets/bootstrap-toggle/bootstrap-toggle.min.css')}}" rel="stylesheet">
-<script src="{{asset('public/admin-assets/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
+<link href="{{asset('admin-assets/bootstrap-toggle/bootstrap-toggle.min.css')}}" rel="stylesheet">
+<script src="{{asset('admin-assets/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
 <script>
 
     $(function(){

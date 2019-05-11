@@ -13,7 +13,7 @@
 
         <div class="user-block clearfix">
             <div style="display: inline-block;text-align: center;width: 100%;">
-                <img src="{{asset('public/admin-assets/img/pro.png')}}" alt="User Avatar" style="width: 50px;height: 50px;float: none;">
+                <img src="{{asset('admin-assets/img/pro.png')}}" alt="User Avatar" style="width: 50px;height: 50px;float: none;">
             </div>
             <div class="detail" style="width:100%;text-align:center;margin-top:3px;float:none;margin-left:0;">
                 <strong>{{Auth::user()->name}}</strong>

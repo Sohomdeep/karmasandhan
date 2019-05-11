@@ -6,7 +6,7 @@
 <body>
     <center>
         <h1 style="color: blue;">Welcome to Careers Jobs</h1>
-        <img src="{{asset('public/admin-assets/img/pro.png')}}">
+        <img src="{{asset('admin-assets/img/pro.png')}}">
         <marquee behavior=scroll direction="right" scrollamount="10">
             <h2 style="color: red">
                 Site Under Construction.
